@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BaseMessage;
+using Core.Extentions;
 using Core.Result.Abstract;
 using Core.Result.Concrete;
 using DataAccess.Abstract;
@@ -7,6 +8,7 @@ using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -21,10 +23,11 @@ namespace Business.Concrete
             _validator = validator;
         }
 
-        public IResult Add(PhotoCreateDto dto)
+        public IResult Add(PhotoCreateDto dto, IFormFile Name, string webRootpath)
         {
 
             var model = PhotoCreateDto.ToPhoto(dto);
+            model.Name = PictureHelper.UploadImage(Name, webRootpath);
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -75,10 +78,18 @@ namespace Business.Concrete
 
         }
 
-        public IResult UpDate(PhotoUpdateDto dto)
+        public IResult UpDate(PhotoUpdateDto dto, IFormFile Name, string webRootpath)
         {
-
             var model = PhotoUpdateDto.ToPhoto(dto);
+            var value=GetById(dto.Id).Data;
+            if (Name == null)
+            {
+                model.Name = value.Name;
+            }
+            else
+            {
+                model.Name = PictureHelper.UploadImage(Name, webRootpath); 
+            }
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)

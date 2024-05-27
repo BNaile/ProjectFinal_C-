@@ -11,9 +11,11 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     public class ServicePackageController : Controller
     {
         private readonly IServicePackage _serviceService;
-        public ServicePackageController(IServicePackage  serviceService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ServicePackageController(IServicePackage serviceService, IWebHostEnvironment webHostEnvironment)
         {
             _serviceService = serviceService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -30,10 +32,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ServicePackageCreateDto dto)
+        public IActionResult Create(ServicePackageCreateDto dto, IFormFile photoUrl)
         {
 
-            var result = _serviceService.Add(dto);
+            var result = _serviceService.Add(dto, photoUrl, _webHostEnvironment.WebRootPath);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("", result.Message);
@@ -54,9 +56,9 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ServicePackageUpdateDto dto)
+        public IActionResult Edit(ServicePackageUpdateDto dto, IFormFile photoUrl)
         {
-            var result = _serviceService.UpDate(dto);
+            var result = _serviceService.UpDate(dto, photoUrl, _webHostEnvironment.WebRootPath);
 
             if (!result.IsSuccess)
             {

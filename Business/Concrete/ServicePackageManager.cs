@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BaseMessage;
+using Core.Extentions;
 using Core.Result.Abstract;
 using Core.Result.Concrete;
 using DataAccess.Abstract;
@@ -7,6 +8,7 @@ using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -20,10 +22,11 @@ namespace Business.Concrete
             _validator = validator;
         }
 
-        public IResult Add(ServicePackageCreateDto dto)
+        public IResult Add(ServicePackageCreateDto dto, IFormFile photoUrl, string webRootpath)
         {
 
             var model = ServicePackageCreateDto.ToService(dto);
+            model.PhotoUrl = PictureHelper.UploadImage(photoUrl, webRootpath);
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -70,18 +73,21 @@ namespace Business.Concrete
 
         public IDataResult<ServicePackage> GetById(int id)
         {
-
-
             var result = _servicePackageDal.GetById(id);
             return new SuccessDataResult<ServicePackage>(result);
-
-
         }
-
-        public IResult UpDate(ServicePackageUpdateDto dto)
+        public IResult UpDate(ServicePackageUpdateDto dto, IFormFile photoUrl, string webRootpath)
         {
-
             var model = ServicePackageUpdateDto.ToService(dto);
+            var value=GetById(dto.Id).Data;
+            if (photoUrl == null)
+            {
+                model.PhotoUrl = value.PhotoUrl;
+            }
+            else
+            {
+                model.PhotoUrl = PictureHelper.UploadImage(photoUrl, webRootpath); ;
+            }
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -96,7 +102,6 @@ namespace Business.Concrete
             model.LastUpdateDate = DateTime.Now;
             _servicePackageDal.Update(model);
             return new SuccessResult(UIMessages.UPDATE_MESSAGE);
-
         }
 
     }

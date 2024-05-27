@@ -19,9 +19,9 @@ namespace DataAccess.Configuration
             builder.Property(x => x.Id)
             .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRIMARY_INCREMENT_VALUE, increment: 1);
 
-            builder.Property(x => x.Name)
-               .IsRequired()
-               .HasMaxLength(100);
+            //builder.Property(x => x.Name)
+            //   .IsRequired()
+            //   .HasMaxLength(100);
 
 
 

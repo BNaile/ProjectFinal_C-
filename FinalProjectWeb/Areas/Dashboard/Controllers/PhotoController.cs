@@ -11,19 +11,20 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     {
         private readonly IPhotoService _photoService;
         private readonly IPhotoCategoryService _photoCategoryService;
-        public PhotoController(IPhotoService photoService, IPhotoCategoryService photoCategoryService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public PhotoController(IPhotoService photoService, IPhotoCategoryService photoCategoryService, IWebHostEnvironment webHostEnvironment)
         {
             _photoService = photoService;
             _photoCategoryService = photoCategoryService;
+            _webHostEnvironment = webHostEnvironment;
         }
-
         public IActionResult Index()
         {
             var data = _photoService.GetPhotMeWithCategory().Data;
 
             return View(data);
         }
-
         [HttpGet]
         public IActionResult Create()
         {
@@ -32,10 +33,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PhotoCreateDto dto)
+        public IActionResult Create(PhotoCreateDto dto, IFormFile Name)
         {
             ViewData["PhotoCategories"] = _photoCategoryService.GetAll().Data;
-            var result = _photoService.Add(dto);
+            var result = _photoService.Add(dto, Name, _webHostEnvironment.WebRootPath);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("", result.Message);
@@ -55,9 +56,9 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(PhotoUpdateDto dto)
+        public IActionResult Edit(PhotoUpdateDto dto, IFormFile Name)
         {
-            var result = _photoService.UpDate(dto);
+            var result = _photoService.UpDate(dto, Name, _webHostEnvironment.WebRootPath);
 
             if (!result.IsSuccess)
             {
