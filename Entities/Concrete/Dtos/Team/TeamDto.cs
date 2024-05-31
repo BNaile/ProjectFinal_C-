@@ -19,6 +19,8 @@ namespace Entities.Concrete.Dtos
 
         public int PositionId { get; set; }
 
+        public string PositionName { get; set; }
+
         public static List<TeamDto> Toteam(Team team)
         {
             TeamDto dto = new TeamDto()

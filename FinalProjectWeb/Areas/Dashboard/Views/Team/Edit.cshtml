@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label asp-for="PositionId" class="control-label">Kateqoriya</label>
                 <select asp-for="PositionId" class="form-control">
-                    @foreach (var item in ViewData["FoodCategorie"] as IEnumerable<PositionDto>)
+                    @foreach (var item in ViewData["TeamCategorie"] as IEnumerable<PositionDto>)
                     {
                         <option value="@item.Id">@item.Name</option>
                     }
