@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BaseMessage;
+using Core.Extentions;
 using Core.Result.Abstract;
 using Core.Result.Concrete;
 using DataAccess.Abstract;
@@ -7,6 +8,7 @@ using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -19,9 +21,12 @@ namespace Business.Concrete
             _testimonialDal = testimonialDal;
             _validator = validator;
         }
-        public IResult Add(TestimonialCreateDto dto)
+        public IResult Add(TestimonialCreateDto dto, IFormFile UrlPhoto, string webRootpath)
         {
             var model = TestimonialCreateDto.ToTestimonial(dto);
+
+            model.UrlPhoto = PictureHelper.UploadImage(UrlPhoto, webRootpath);
+
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -36,6 +41,7 @@ namespace Business.Concrete
             _testimonialDal.Add(model);
             return new SuccessResult(UIMessages.ADDED_MESSAGE);
         }
+
 
         public IResult Delete(int id)
         {
@@ -57,9 +63,18 @@ namespace Business.Concrete
             return new SuccessDataResult<Testimonial>(result);
         }
 
-        public IResult UpDate(TestimonialUpdateDto dto)
+        public IResult UpDate(TestimonialUpdateDto dto, IFormFile UrlPhoto, string webRootpath)
         {
             var model = TestimonialUpdateDto.ToTestimonial(dto);
+            var value = GetById(dto.Id).Data;
+            if (UrlPhoto == null)
+            {
+                model.UrlPhoto = value.UrlPhoto;
+            }
+            else
+            {
+                model.UrlPhoto = PictureHelper.UploadImage(UrlPhoto, webRootpath);
+            }
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -75,5 +90,7 @@ namespace Business.Concrete
             _testimonialDal.Update(model); 
             return new SuccessResult(UIMessages.UPDATE_MESSAGE);
         }
+
+        
     }
 }

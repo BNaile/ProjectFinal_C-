@@ -22,11 +22,11 @@ namespace Business.Concrete
             _feedbackDal = feedbackDal;
             _validator = validator;
         }
-        public IResult Add(FeedbackCreateDto dto, IFormFile photoUrl, string webRootpath )
+        public IResult Add(FeedbackCreateDto dto)
         {
            
             var model = FeedbackCreateDto.ToFeedback(dto);
-            model.PhotoUrl=PictureHelper.UploadImage(photoUrl, webRootpath);
+          
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -65,18 +65,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Feedback>(result);
         }
 
-        public IResult UpDate(FeedbackUpdateDto dto, IFormFile photoUrl, string webRootpath)
+        public IResult UpDate(FeedbackUpdateDto dto)
         {
             var model = FeedbackUpdateDto.ToFeedback(dto);
           var value =GetById(dto.Id).Data;
-            if(photoUrl== null)
-            {
-                model.PhotoUrl = value.PhotoUrl;
-            }
-            else
-            {
-                model.PhotoUrl = PictureHelper.UploadImage(photoUrl, webRootpath); ;
-            }
+           
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)

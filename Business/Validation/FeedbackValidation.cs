@@ -29,13 +29,13 @@ namespace Business.Validation
                  .NotEmpty()
                  .WithMessage(UIMessages.DEFAULT_NOT_EMPTY_MESSAGE);
 
-            RuleFor(x => x.PhotoUrl)
-              .NotEmpty()
-              .WithMessage(UIMessages.DEFAULT_NOT_EMPTY_MESSAGE)
-              .MinimumLength(3)
-              .WithMessage(UIMessages.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(200)
-              .WithMessage(UIMessages.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
+            //RuleFor(x => x.PhotoUrl)
+            //  .NotEmpty()
+            //  .WithMessage(UIMessages.DEFAULT_NOT_EMPTY_MESSAGE)
+            //  .MinimumLength(3)
+            //  .WithMessage(UIMessages.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+            //  .MaximumLength(200)
+            //  .WithMessage(UIMessages.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
         }
     }
 }

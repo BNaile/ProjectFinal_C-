@@ -17,6 +17,7 @@
                             <th>Şəkil</th>
                              <th>Ad</th>
                              <th>Soyad</th>
+                            
                             <th></th>
                         </tr>
                     </thead>
@@ -29,6 +30,7 @@
                                 <td><img src="@item.PhotoUrl" style="width:100px; height:100px" alt="Food Image" /></td>
                                 <td>@item.Name</td>
                                 <td>@item.Surname</td>
+                               
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

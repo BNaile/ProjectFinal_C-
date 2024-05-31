@@ -12,12 +12,12 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     {
 
         private readonly IFeedbackService _feedbackService;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+       
 
-        public FeedbackController(IFeedbackService feedbacService, IWebHostEnvironment webHostEnvironment)
+        public FeedbackController(IFeedbackService feedbacService)
         {
             _feedbackService = feedbacService;
-            _webHostEnvironment = webHostEnvironment;
+            
         }
 
         public IActionResult Index()
@@ -34,9 +34,9 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(FeedbackCreateDto dto, IFormFile photoUrl)
+        public IActionResult Create(FeedbackCreateDto dto)
         {
-            var result = _feedbackService.Add(dto, photoUrl, _webHostEnvironment.WebRootPath);
+            var result = _feedbackService.Add(dto);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("", result.Message);
@@ -55,9 +55,9 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(FeedbackUpdateDto dto, IFormFile photoUrl)
+        public IActionResult Edit(FeedbackUpdateDto dto)
         {
-            var result = _feedbackService.UpDate(dto, photoUrl, _webHostEnvironment.WebRootPath);
+            var result = _feedbackService.UpDate(dto);
 
             if (!result.IsSuccess)
             {

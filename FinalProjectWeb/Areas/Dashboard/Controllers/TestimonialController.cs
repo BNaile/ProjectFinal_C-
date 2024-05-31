@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Concrete.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectWeb.Areas.Dashboard.Controllers
@@ -10,9 +11,11 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     public class TestimonialController : Controller
     {
         private readonly ITestimonialService _testimonialService;
-        public TestimonialController(ITestimonialService testimonialService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public TestimonialController(ITestimonialService testimonialService, IWebHostEnvironment webHostEnvironment)
         {
             _testimonialService = testimonialService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -29,10 +32,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(TestimonialCreateDto dto)
+        public IActionResult Create(TestimonialCreateDto dto, IFormFile UrlPhoto)
         {
 
-            var result = _testimonialService.Add(dto);
+            var result = _testimonialService.Add(dto, UrlPhoto, _webHostEnvironment.WebRootPath);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("", result.Message);
@@ -51,9 +54,9 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(TestimonialUpdateDto dto)
+        public IActionResult Edit(TestimonialUpdateDto dto, IFormFile Name)
         {
-            var result = _testimonialService.UpDate(dto);
+            var result = _testimonialService.UpDate(dto, Name, _webHostEnvironment.WebRootPath);
 
             if (!result.IsSuccess)
             {

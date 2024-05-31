@@ -12,9 +12,9 @@ namespace Business.Abstract
 {
     public interface IFeedbackService
     {
-        IResult Add(FeedbackCreateDto dto,IFormFile photoUrl, string webRootpath);
+        IResult Add(FeedbackCreateDto dto);
         IResult Delete(int id);
-        IResult UpDate(FeedbackUpdateDto dto, IFormFile photoUrl, string webRootpath);
+        IResult UpDate(FeedbackUpdateDto dto);
         IDataResult<List<Feedback>> GetAll();
         IDataResult<Feedback> GetById(int id);
     }
