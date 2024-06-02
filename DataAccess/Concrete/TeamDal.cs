@@ -21,6 +21,7 @@ namespace DataAccess.Concrete
                          where team.Deleted == 0
                          join position in _context.Positions
                          on team.PositionId equals position.Id
+                         
                          where position.Deleted == 0
                          select new TeamDto
                          {
@@ -28,6 +29,7 @@ namespace DataAccess.Concrete
                              Name = team.Name,
                              PositionId = team.PositionId,
                              SurName = team.SurName,
+                             PositionName =team.Name,
                              FacebookUrl = team.FacebookLink,
                              TwitterUrl = team.TwitterLink,
                          };
