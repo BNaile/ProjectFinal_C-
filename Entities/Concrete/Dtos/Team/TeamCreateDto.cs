@@ -16,8 +16,6 @@ namespace Entities.Concrete.Dtos
 
         public string TwitterUrl { get; set; }
 
-        public string TeamPositionName {  get; set; }
-
         public int PositionId { get; set; }
 
         public static Team ToTeam(TeamCreateDto dto)

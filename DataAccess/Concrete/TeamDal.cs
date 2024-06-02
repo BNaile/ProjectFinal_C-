@@ -29,7 +29,7 @@ namespace DataAccess.Concrete
                              Name = team.Name,
                              PositionId = team.PositionId,
                              SurName = team.SurName,
-                             PositionName =team.Name,
+                             PositionName=position.Name,
                              FacebookUrl = team.FacebookLink,
                              TwitterUrl = team.TwitterLink,
                          };
