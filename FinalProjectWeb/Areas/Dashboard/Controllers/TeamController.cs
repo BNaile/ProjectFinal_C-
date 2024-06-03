@@ -11,10 +11,12 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IPositionService _positionService;
-        public TeamController(ITeamService teamService, IPositionService positionService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public TeamController(ITeamService teamService, IPositionService positionService, IWebHostEnvironment webHostEnvironment)
         {
             _teamService = teamService;
             _positionService = positionService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -32,10 +34,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(TeamCreateDto dto)
+        public IActionResult Create(TeamCreateDto dto, IFormFile PhotoUrl)
         {
             ViewData["TeamCategorie"] = _positionService.GetAll().Data;
-            var result = _teamService.Add(dto);
+            var result = _teamService.Add(dto, PhotoUrl, _webHostEnvironment.WebRootPath);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("", result.Message);
@@ -57,10 +59,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(TeamUpdateDto dto)
+        public IActionResult Edit(TeamUpdateDto dto, IFormFile PhotoUrl)
         {
             ViewData["TeamCategorie"] = _positionService.GetAll().Data;
-            var result = _teamService.UpDate(dto);
+            var result = _teamService.UpDate(dto, PhotoUrl, _webHostEnvironment.WebRootPath);
 
             if (!result.IsSuccess)
             {

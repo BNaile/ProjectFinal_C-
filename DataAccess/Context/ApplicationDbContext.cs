@@ -10,7 +10,7 @@ namespace DataAccess.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source =Localhost;Initial Catalog=TravelDb;Integrated Security=true;Encrypt=false;");
+            optionsBuilder.UseSqlServer("Data Source =Localhost;Initial Catalog=ToTravel;Integrated Security=true;Encrypt=false;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

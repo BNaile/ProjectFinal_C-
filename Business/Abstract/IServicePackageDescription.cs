@@ -14,7 +14,7 @@ namespace Business.Abstract
         IResult Add(ServicePackageDescriptionCreateDto dto);
         IResult Delete(int id);
         IResult UpDate(ServicePackageDescriptionUpdateDto dto);
-        IDataResult<List<ServicePackageDescription>> GetAll();
+        IDataResult<List<ServicePackageDescriptionDto>> GetServiceWithServicePackages();
         IDataResult<ServicePackageDescription> GetById(int id);
     }
 }

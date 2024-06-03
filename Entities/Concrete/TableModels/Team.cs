@@ -14,6 +14,7 @@ namespace Entities.Concrete.TableModels
         public string FacebookLink { get; set; }
         public string TwitterLink { get; set; }
         public int PositionId { get; set; }
+        public string PhotoUrl { get; set; }
         public virtual Position Position { get; set; }
     }
 }

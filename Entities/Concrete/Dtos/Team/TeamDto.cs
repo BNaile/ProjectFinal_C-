@@ -16,6 +16,7 @@ namespace Entities.Concrete.Dtos
         public string FacebookUrl { get; set; }
 
         public string TwitterUrl { get; set; }
+        public string PhotoUrl { get; set; }
 
         public int PositionId { get; set; }
 
@@ -28,6 +29,7 @@ namespace Entities.Concrete.Dtos
                 Id = team.Id,
                 Name = team.Name,
                 SurName = team.SurName,
+                PhotoUrl =team.PhotoUrl,
                 FacebookUrl=team.FacebookLink,
                 TwitterUrl=team.TwitterLink,
                 PositionId=team.PositionId

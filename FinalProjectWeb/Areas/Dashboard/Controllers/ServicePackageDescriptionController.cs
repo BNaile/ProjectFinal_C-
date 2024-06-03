@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Concrete.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectWeb.Areas.Dashboard.Controllers
@@ -10,27 +11,31 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     public class ServicePackageDescriptionController : Controller
     {
         private readonly IServicePackageDescription _servicePackageDescriptionService;
-        public ServicePackageDescriptionController(IServicePackageDescription servicePackageDescriptionService)
+        private readonly IServicePackage _servicePackageService;
+        public ServicePackageDescriptionController(IServicePackageDescription servicePackageDescriptionService, IServicePackage servicePackageService)
         {
             _servicePackageDescriptionService = servicePackageDescriptionService;
+            _servicePackageService = servicePackageService;
         }
 
         public IActionResult Index()
         {
-            var data = _servicePackageDescriptionService.GetAll().Data;
+            var data = _servicePackageDescriptionService.GetServiceWithServicePackages().Data;
 
             return View(data);
         }
 
-        [HttpGet]
+        [HttpGet] 
         public IActionResult Create()
         {
+            ViewData["ServicePackage"] = _servicePackageService.GetAll().Data;
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(ServicePackageDescriptionCreateDto dto)
         {
+            ViewData["ServicePackage"] = _servicePackageService.GetAll().Data;
 
             var result = _servicePackageDescriptionService.Add(dto);
             if (!result.IsSuccess)
@@ -41,10 +46,11 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
             return RedirectToAction("Index");
            
         }
-
+       
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewData["ServicePackage"] = _servicePackageService.GetAll().Data;
             var data = _servicePackageDescriptionService.GetById(id).Data;
 
             return View(data);
@@ -53,6 +59,7 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Edit(ServicePackageDescriptionUpdateDto dto)
         {
+            ViewData["ServicePackage"] = _servicePackageService.GetAll().Data;
             var result = _servicePackageDescriptionService.UpDate(dto);
 
             if (!result.IsSuccess)
@@ -64,7 +71,7 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
 
             
         }
-        [HttpPost]
+        [HttpPost]  
         public IActionResult Delete(int id)
         {
             var result = _servicePackageDescriptionService.Delete(id);

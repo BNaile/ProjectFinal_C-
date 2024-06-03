@@ -89,7 +89,7 @@ namespace FinalProjectWeb.Controllers
             var positionservice = _positionService.GetAll().Data;
             var qualityservice = _qualityService.GetAll().Data;
             var servicepackage = _servicePackage.GetAll().Data;
-            var servicepackagedescription = _servicePackageDescription.GetAll().Data;
+            var servicepackagedescription = _servicePackageDescription.GetServiceWithServicePackages().Data;
             var teamservice = _teamService.GetTeamWithPositionCategories().Data;
             var testmonialservice = _testimonialService.GetAll().Data;
             var Introcat=_introCatService.GetAll().Data;
@@ -100,7 +100,7 @@ namespace FinalProjectWeb.Controllers
                 AboutsDtos = about,
                 AboutCountDtos = aboutcountservice,
                 BussinesCategoryDtos = bussinescategorieservice,
-                CallMeDtos = callmeservice,
+                CallMeDtos = callmeservice ,
                 CallMeInterestedDtos = calmeinterestedservice,
                 ContactDtos = contactservice,
                 ExpertiseDtos = expertiseservice,

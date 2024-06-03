@@ -1,4 +1,4 @@
-﻿@model List<ServicePackageDescription>
+﻿@model List<ServicePackageDescriptionDto>
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -14,9 +14,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            
                             <th>Açıqlama</th>
-                            
                             <th></th>
                         </tr>
                     </thead>
@@ -24,14 +22,12 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                               
                                 <td>@item.Description</td>
-                               
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">
+                                    <a asp-action="Edit" asp-route-id="@item.İd">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>|
-                                    <a item-value="@item.Id" item-title="@item.Description" class="btnDelete">
+                                    <a item-value="@item.İd" item-title="@item.Description" class="btnDelete">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

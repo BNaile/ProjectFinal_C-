@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace DataAccess.Abstract
 {
     public interface IServicePackageDescriptionDal : IBaseRepository<ServicePackageDescription>
     {
+        List<ServicePackageDescriptionDto> GetServiceWithServicePackages();
     }
 
 }

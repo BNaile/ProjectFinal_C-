@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BaseMessage;
+using Core.Extentions;
 using Core.Result.Abstract;
 using Core.Result.Concrete;
 using DataAccess.Abstract;
@@ -7,6 +8,7 @@ using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -20,10 +22,11 @@ namespace Business.Concrete
             _validator = validator;
         }
 
-        public IResult Add(TeamCreateDto dto)
+        public IResult Add(TeamCreateDto dto, IFormFile PhotoUrl, string webRootpath)
         {
 
             var model = TeamCreateDto.ToTeam(dto);
+            model.PhotoUrl = PictureHelper.UploadImage(PhotoUrl, webRootpath);
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -62,8 +65,6 @@ namespace Business.Concrete
 
         public IDataResult<List<TeamDto>> GetTeamWithPositionCategories()
         {
-
-            //var result = _teamDal.GetAll(x => x.Deleted == 0);
             return new SuccessDataResult<List<TeamDto>>(_teamDal.GetTeamWithPositionCategories());
 
         }
@@ -74,10 +75,19 @@ namespace Business.Concrete
             return new SuccessDataResult<Team>(result);
         }
 
-        public IResult UpDate(TeamUpdateDto dto)
+        public IResult UpDate(TeamUpdateDto dto, IFormFile PhotoUrl, string webRootpath)
         {
 
             var model = TeamUpdateDto.ToTeam(dto);
+            var value = GetById(dto.Id).Data;
+            if (PhotoUrl == null)
+            {
+                model.PhotoUrl = value.PhotoUrl;
+            }
+            else
+            {
+                model.PhotoUrl = PictureHelper.UploadImage(PhotoUrl, webRootpath);
+            }
             var validator = _validator.Validate(model);
             string errorMessage = " ";
             foreach (var item in validator.Errors)
@@ -94,5 +104,7 @@ namespace Business.Concrete
             return new SuccessResult(UIMessages.UPDATE_MESSAGE);
 
         }
+
+       
     }
 }

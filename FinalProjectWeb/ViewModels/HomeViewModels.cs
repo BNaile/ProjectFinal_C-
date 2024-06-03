@@ -21,7 +21,7 @@ namespace FinalProjectWeb.ViewModels
         public List<PositionDto> PositionDtos { set; get; }
         public List<Quality> QualityDtos { set; get; }
         public List<ServicePackage> ServicePackageDtos { set; get; }
-        public List<ServicePackageDescription> ServicePackageDescriptionDtos { set; get; }
+        public List<ServicePackageDescriptionDto> ServicePackageDescriptionDtos { set; get; }
         public List<TeamDto> TeamDtos { set; get; }
         public List<Testimonial> TestimonialDtos { set; get; }
     }

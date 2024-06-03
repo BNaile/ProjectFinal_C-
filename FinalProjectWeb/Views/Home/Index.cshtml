@@ -386,8 +386,29 @@
             <div class="col-lg-6">
                 <div class="text-container">
                     <div class="section-title">CALL ME</div>
-                    <h2 class="white">Have Us Contact You By Filling And Submitting The Form</h2>
-                    <p class="white">You are just a few steps away from a personalized offer. Just fill in the form and send it to us and we'll get right back with a call to help you decide what service package works.</p>
+                    @foreach(var item in Model.CallMeDtos)  
+                    {
+                        <h2 class="white">@item.Title</h2>
+                        <p class="white">@item.Description</p>
+                        <form id="callMeForm" data-toggle="validator" data-focus="false">
+                    <div class="form-group">
+                        <input type="text" class="form-control-input" id="lname" name="lname" required>
+                        <label class="label-control" for="lname">@item.Name</label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control-input" id="lphone" name="lphone" required>
+                        <label class="label-control" for="lphone">@item.Phone</label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control-input" id="lemail" name="lemail" required>
+                        <label class="label-control" for="lemail">@item.Email</label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                        </form>
+                       
+                    }
                     <ul class="list-unstyled li-space-lg white">
                         <li class="media">
                             <i class="fas fa-square"></i>
@@ -404,11 +425,12 @@
                     </ul>
                 </div>
             </div> <!-- end of col -->
+            
             <div class="col-lg-6">
 
                 <!-- Call Me Form -->
                 <form id="callMeForm" data-toggle="validator" data-focus="false">
-                    <div class="form-group">
+                    @* <div class="form-group">
                         <input type="text" class="form-control-input" id="lname" name="lname" required>
                         <label class="label-control" for="lname">Name</label>
                         <div class="help-block with-errors"></div>
@@ -422,7 +444,7 @@
                         <input type="email" class="form-control-input" id="lemail" name="lemail" required>
                         <label class="label-control" for="lemail">Email</label>
                         <div class="help-block with-errors"></div>
-                    </div>
+                    </div> *@
                     <div class="form-group">
                         <select class="form-control-select" id="lselect" required>
                             <option class="select-option" value="" disabled selected>Interested in...</option>
@@ -444,7 +466,6 @@
                     </div>
                 </form>
                 <!-- end of call me form -->
-
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
@@ -720,85 +741,37 @@
                 </div> <!-- end of team-member -->
                 <!-- end of team member -->
                 <!-- Team Member --> *@
-               @*  @foreach( var item1 in Model.PositionDtos)
+                @*  @foreach( var item1 in Model.PositionDtos)
                 { *@
-                    @foreach (var item in Model.TeamDtos)
-                    {
-                        <div class="team-member">
-                            <div class="image-wrapper">
-                                <img class="img-fluid" src="~/assets/images/team-2.png" alt="alternative">
-                            </div> <!-- end of image wrapper -->
-                            <p class="p-large">@item.Name @item.SurName</p>
+                @foreach (var item in Model.TeamDtos)
+                {
+                    <div class="team-member">
+                        <div class="image-wrapper">
+                            <img class="img-fluid" src="@item.PhotoUrl" alt="alternative">
+                        </div> <!-- end of image wrapper -->
+                        <p class="p-large">@item.Name @item.SurName</p>
 
-                            <p class="job-title">@item.PositionName</p>
+                        <p class="job-title">@item.PositionName</p>
 
-                            <span class="social-icons">
-                                <span class="fa-stack">
-                                    <a href="@item.FacebookUrl">
-                                        <span class="hexagon"></span>
-                                        <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                    </a>
-                                </span>
-                                <span class="fa-stack">
-                                    <a href="@item.TwitterUrl">
-                                        <span class="hexagon"></span>
-                                        <i class="fab fa-twitter fa-stack-1x"></i>
-                                    </a>
-                                </span>
+                        <span class="social-icons">
+                            <span class="fa-stack">
+                                <a href="@item.FacebookUrl">
+                                    <span class="hexagon"></span>
+                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
+                                </a>
                             </span>
-                        </div> <!-- end of team-member -->
-                        <!-- end of team member -->
-                        <!-- Team Member -->
-                    }
-                  
-                    
-                
-                
-                @*  <div class="team-member">
-                <div class="image-wrapper">
-                <img class="img-fluid" src="images/team-3.png" alt="alternative">
-                </div> <!-- end of image wrapper -->
-                <p class="p-large">Chris Zimerman</p>
-                <p class="job-title">Online Marketer</p>
-                <span class="social-icons">
-                <span class="fa-stack">
-                <a href="#your-link">
-                <span class="hexagon"></span>
-                <i class="fab fa-facebook-f fa-stack-1x"></i>
-                </a>
-                </span>
-                <span class="fa-stack">
-                <a href="#your-link">
-                <span class="hexagon"></span>
-                <i class="fab fa-twitter fa-stack-1x"></i>
-                </a>
-                </span>
-                </span>
-                </div> <!-- end of team-member -->
-                <!-- end of team member -->
-                <!-- Team Member -->
-                <div class="team-member">
-                <div class="image-wrapper">
-                <img class="img-fluid" src="images/team-4.png" alt="alternative">
-                </div> <!-- end of image wrapper -->
-                <p class="p-large">Mary Villalonga</p>
-                <p class="job-title">Community Manager</p>
-                <span class="social-icons">
-                <span class="fa-stack">
-                <a href="#your-link">
-                <span class="hexagon"></span>
-                <i class="fab fa-facebook-f fa-stack-1x"></i>
-                </a>
-                </span>
-                <span class="fa-stack">
-                <a href="#your-link">
-                <span class="hexagon"></span>
-                <i class="fab fa-twitter fa-stack-1x"></i>
-                </a>
-                </span>
-                </span>
-                </div> <!-- end of team-member -->
-                <!-- end of team member --> *@
+                            <span class="fa-stack">
+                                <a href="@item.TwitterUrl">
+                                    <span class="hexagon"></span>
+                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                </a>
+                            </span>
+                        </span>
+                    </div> <!-- end of team-member -->
+                    <!-- end of team member -->
+                    <!-- Team Member -->
+                }
+
 
             </div> <!-- end of col -->
         </div> <!-- end of row -->
@@ -818,11 +791,11 @@
                 <div class="text-container">
                     <div class="section-title">ABOUT</div>
                     <h2>We're Passionate About Delivering Growth Services</h2>
-                    @foreach(var item in Model.AboutsDtos)
+                    @foreach (var item in Model.AboutsDtos)
                     {
-                        <p>@item.ShortDescription</p>
+                        <p>@Html.Raw(item.ShortDescription)</p>
                     }
-                   
+
                     <ul class="list-unstyled li-space-lg">
                         <li class="media">
                             <i class="fas fa-square"></i>
@@ -835,21 +808,20 @@
                     </ul>
 
                     <!-- Counter -->
-                    <div id="counter">
-                        <div class="cell">
-                            <div class="counter-value number-count" data-count="231">1</div>
-                            <div class="counter-info">Happy<br>Users</div>
+                    @foreach (var item in Model.AboutCountDtos)
+                    {
+                        <div id="counter">
+                           <div class="cell">
+                                <div class="counter-value number-count" data-count="@item.Count">1</div>
+                                <div class="counter-info">Issues<br>Solved</div>
+                            </div>
+
+                           @*  <div class="cell">
+                                <div class="counter-value number-count" data-count="159">1</div>
+                                <div class="counter-info">Good<br>Reviews</div>
+                            </div> *@ 
                         </div>
-                        <div class="cell">
-                            <div class="counter-value number-count" data-count="121">1</div>
-                            <div class="counter-info">Issues<br>Solved</div>
-                        </div>
-                        <div class="cell">
-                            <div class="counter-value number-count" data-count="159">1</div>
-                            <div class="counter-info">Good<br>Reviews</div>
-                        </div>
-                    </div>
-                    <!-- end of counter -->
+                    }
 
                 </div> <!-- end of text-container -->
             </div> <!-- end of col -->
@@ -865,6 +837,7 @@
                 <div class="text-container">
                     <div class="section-title">CONTACT</div>
                     <h2>Get In Touch Using The Form</h2>
+                   
                     <p>You can stop by our office for a cup of coffee and just use the contact form below for any questions and inquiries</p>
                     <ul class="list-unstyled li-space-lg">
                         <li class="address"><i class="fas fa-map-marker-alt"></i>22nd Innovative Street, San Francisco, CA 94043, US</li>
@@ -916,21 +889,26 @@
 
                 <!-- Contact Form -->
                 <form id="contactForm" data-toggle="validator" data-focus="false">
-                    <div class="form-group">
-                        <input type="text" class="form-control-input" id="cname" required>
-                        <label class="label-control" for="cname">Name</label>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control-input" id="cemail" required>
-                        <label class="label-control" for="cemail">Email</label>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                        <label class="label-control" for="cmessage">Your message</label>
-                        <div class="help-block with-errors"></div>
-                    </div>
+                    @foreach (var item in Model.ContactDtos)
+                    {
+                        <form id="contactForm" data-toggle="validator" data-focus="false">
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="cname" required>
+                                <label class="label-control" for="cname">@item.Name</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control-input" id="cemail" required>
+                                <label class="label-control" for="cemail">@item.Email</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control-textarea" id="cmessage" required></textarea>
+                                <label class="label-control" for="cmessage">@item.Message</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </form>
+                    }
                     <div class="form-group checkbox">
                         <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I agree with Aria's stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a>
                         <div class="help-block with-errors"></div>

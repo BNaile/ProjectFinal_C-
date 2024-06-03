@@ -28,6 +28,7 @@ namespace DataAccess.Concrete
                              Id = team.Id,
                              Name = team.Name,
                              PositionId = team.PositionId,
+                             PhotoUrl=team.PhotoUrl,
                              SurName = team.SurName,
                              PositionName=position.Name,
                              FacebookUrl = team.FacebookLink,

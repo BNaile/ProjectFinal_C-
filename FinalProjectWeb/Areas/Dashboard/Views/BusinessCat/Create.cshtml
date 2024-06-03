@@ -1,5 +1,9 @@
 ﻿@model BusinessCat
-
+<style>
+    .ck-editor__editable[role="textbox"] {
+        min-height: 300px;
+    }
+</style>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -7,17 +11,17 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label">Başlıq</label>
-                <input asp-for="Title" class="form-control" />
+                <textarea id="title" asp-for="Title" class="form-control"></textarea>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label">Açıqlama</label>
-                <textarea asp-for="Description" class="form-control"></textarea>
+                <textarea id="description" asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Points" class="control-label"> Göstərici</label>
-                <input asp-for="Points" class="form-control" id="answer" type="number"/>
+                <input id="point" asp-for="Points" class="form-control" id="answer" type="number" />
                 <span asp-validation-for="Points" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -30,3 +34,11 @@
 <div>
     <a asp-action="Index">@DefaultConstantValue.RETURN_TO_BACK</a>
 </div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#description'));
+
+    ClassicEditor
+        .create(document.querySelector('#title'));
+</script>

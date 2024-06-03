@@ -1,31 +1,11 @@
 ﻿@using Entities.Concrete.Dto
 @model AboutCreateDto
-@* 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label">Başlıq</label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShortDescription" class="control-label">Haqqımızda</label>
-                <textarea asp-for="ShortDescription" class="form-control"></textarea>
-                <span asp-validation-for="ShortDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="@DefaultConstantValue.ADD_MESSAGE" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<style>
+    .ck-editor__editable[role="textbox"] {
+        min-height: 300px;
+    }
+</style>
 
-<div>
-    <a asp-action="Index">@DefaultConstantValue.RETURN_TO_BACK</a>
-</div> *@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -33,8 +13,8 @@
             <div asp-validation-summary="All" class="text-danger"></div>
            
             <div class="form-group">
-                <label asp-for="ShortDescription" class="control-label">İkon</label>
-                <textarea asp-for="ShortDescription" class="form-control"></textarea>
+                <label asp-for="ShortDescription" class="control-label">Açıqlama</label>
+                <textarea id="description" asp-for="ShortDescription" class="form-control"></textarea>
                 <span asp-validation-for="ShortDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,3 +27,8 @@
 <div>
     <a asp-action="Index">@DefaultConstantValue.RETURN_TO_BACK</a>
 </div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#description'))
+</script>

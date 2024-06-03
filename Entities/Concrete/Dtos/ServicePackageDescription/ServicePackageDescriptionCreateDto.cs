@@ -18,8 +18,6 @@ namespace Entities.Concrete.Dtos
             {
                 Description = dto.Description,
                 ServicePackageId = dto.ServicePackageId,
-               
-         
             };
             return service;
         }

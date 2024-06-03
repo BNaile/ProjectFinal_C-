@@ -52,10 +52,11 @@ namespace Business.Concrete
             return new SuccessResult(UIMessages.Deleted_MESSAGE);
         }
 
-        public IDataResult<List<ServicePackageDescription>> GetAll()
+        public IDataResult<List<ServicePackageDescriptionDto>> GetServiceWithServicePackages()
         {
-            var result = _servicePackageDescriptionDal.GetAll(x => x.Deleted == 0);
-            return new SuccessDataResult<List<ServicePackageDescription>>(result);
+            //var result = _servicePackageDescriptionDal.GetAll(x => x.Deleted == 0);
+
+            return new SuccessDataResult<List<ServicePackageDescriptionDto>>(_servicePackageDescriptionDal.GetServiceWithServicePackages());
         }
 
         public IDataResult<ServicePackageDescription> GetById(int id)
