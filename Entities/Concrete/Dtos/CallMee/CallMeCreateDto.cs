@@ -11,6 +11,8 @@ namespace Entities.Concrete.Dtos
         public string Email { get; set; }
         public int Phone { get; set; }
         public string ServiceCategoryName { get; set; }
+        public int ServiceId { get; set; }
+
         public static CallMe ToCallMe(CallMeCreateDto dto)
         {
            CallMe callMeCreate = new()
@@ -18,8 +20,9 @@ namespace Entities.Concrete.Dtos
                 Title = dto.Title,
                 Description = dto.Description,
                 Name = dto.Name,
-                Email = dto.Email,
+                Email = dto.Email, 
                 Phone = dto.Phone,
+                ServiceID = dto.ServiceId,
                
             };
             return callMeCreate;

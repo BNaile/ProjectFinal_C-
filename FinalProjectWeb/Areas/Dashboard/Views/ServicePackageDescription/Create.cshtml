@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label asp-for="ServicePackageId" class="control-label">Servis</label>
                 <select asp-for="ServicePackageId" class="form-control">
-                    @foreach (var item in ViewData["ServicePackage"] as IEnumerable<ServicePackageDto>)
+                    @foreach (var item in ViewData["ServicePackage"] as IEnumerable<ServicePackage>)
                     {
                         <option value="@item.Id">@item.Description</option>
                     }

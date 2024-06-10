@@ -19,11 +19,11 @@ namespace Business.Concrete
             _servicePackageDescriptionDal = servicePackageDescriptionDal;
             _validator = validator;
         }
-        public IResult Add(ServicePackageDescription entity)
-        {
-            _servicePackageDescriptionDal.Add(entity);
-            return new SuccessResult(UIMessages.ADDED_MESSAGE);
-        }
+        //public IResult Add(ServicePackageDescription entity)
+        //{
+        //    _servicePackageDescriptionDal.Add(entity);
+        //    return new SuccessResult(UIMessages.ADDED_MESSAGE);
+        //}
 
         public IResult Add(ServicePackageDescriptionCreateDto dto)
         {

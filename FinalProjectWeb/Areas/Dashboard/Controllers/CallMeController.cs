@@ -11,11 +11,13 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     [Authorize]
     public class CallMeController : Controller
     {
-
-        private readonly ICallMeService _callMeService;
-        public CallMeController(ICallMeService callMeService)
+        //Bu Service yazmısane onun adı hansıdı?hans; ad; bax googldan gos
+        private readonly ICallMeService _callMeService;   
+        private readonly IServicePackage _servicePackage;
+        public CallMeController(ICallMeService callMeService, IServicePackage servicePackage)
         {
             _callMeService = callMeService;
+            _servicePackage = servicePackage;
         }
 
         public IActionResult Index()
@@ -28,8 +30,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Services"] = _servicePackage.GetAll().Data;
             return View();
         }
+        // bir dk goz;e oz kodumda bax;m
 
         [HttpPost]
         public IActionResult Create(CallMeCreateDto dto)

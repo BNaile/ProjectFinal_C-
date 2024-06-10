@@ -64,6 +64,7 @@ namespace Business.Concrete
 
         public IDataResult<List<PhotoDto>> GetPhotMeWithCategory()
         {
+           
             return new SuccessDataResult<List<PhotoDto>>(_photoDal.GetPhotMeWithCategory());
 
         }
