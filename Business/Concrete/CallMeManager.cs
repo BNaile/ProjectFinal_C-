@@ -59,12 +59,10 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult<List<CallMe>> GetAll()
+        public IDataResult<List<CallMeDto>> GetAll()
         {
-
-            var result = _callMeDal.GetAll(x => x.Deleted == 0);
-            return new SuccessDataResult<List<CallMe>>(result);
-
+            var result = _callMeDal.GetAllCallMeWithServices();
+            return new SuccessDataResult<List<CallMeDto>>(result);
         }
 
         public IDataResult<CallMe> GetById(int id)

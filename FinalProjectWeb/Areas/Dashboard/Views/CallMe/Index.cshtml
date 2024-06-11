@@ -1,4 +1,4 @@
-﻿@model List<CallMe>
+﻿@model List<CallMeDto>
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -30,7 +30,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Email</td>
                                 <td>@item.Phone</td>
-                                <td>@item.ServiceCategory</td>
+                                <td>@item.ServiceCategoryName</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

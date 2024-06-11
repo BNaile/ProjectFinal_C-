@@ -14,7 +14,7 @@ namespace Business.Abstract
         IResult Add(CallMeCreateDto dto);
         IResult Delete( int id);
         IResult UpDate(CallMeUpdateDto dto);
-        IDataResult<List<CallMe>> GetAll();
+        IDataResult<List<CallMeDto>> GetAll();
         IDataResult<CallMe> GetById(int id);
     }
 }

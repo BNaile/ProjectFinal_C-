@@ -8,7 +8,7 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
-        public int ServiceId {  get; set; }
+        public int ServiceID {  get; set; }
         public string ServiceCategoryName { get; set; }
     }
 }
