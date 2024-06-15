@@ -31,10 +31,10 @@
                 <div class="col-lg-5">
                     <div class="text-container">
                         <div class="section-title">INTRO</div>
-                        <h2>@item.Title</h2>
-                        <p>@item.Description</p>
-                        <p class="testimonial-text">"@item.Description"</p>
-                        <div class="testimonial-author">@item.Name @item.Surname - CEO</div>
+                        <h2>@Html.Raw(item.Title)</h2>
+                        <p>@Html.Raw(item.Description)</p>
+                        <p class="testimonial-text">"@Html.Raw(item.Description)"</p>
+                        <div class="testimonial-author">@Html.Raw(item.Name) @Html.Raw(item.Surname) - CEO</div>
                     </div>
                     <!-- end of text-container -->
                 </div> <!-- end of col -->
@@ -99,10 +99,7 @@
                                         <i class="fas fa-square"></i>
                                         <div class="media-body">@oneitem.Description </div>
                                     </li>
-                                    <li class="media">
-                                        <i class="fas fa-square"></i>
-                                        <div class="media-body">@oneitem.Description</div>
-                                    </li>
+                                   
                                 </ul>
                             }
                             <p class="price">Starting at <span>$@item.Price</span></p>
@@ -172,8 +169,8 @@
                 {
                     <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
 
-                        <h4>@item.Title</h4>
-                        <p>@item.Description<a class="green page-scroll" href="#services">Services</a> section shows how flexible we are for all types of budgets.</p>
+                        <h4>@Html.Raw(item.Title)</h4>
+                        <p>@Html.Raw(item.Description)<a class="green page-scroll" href="#services">Services</a> section shows how flexible we are for all types of budgets.</p>
 
                         <!-- Progress Bars -->
                         <div class="progress-container">
@@ -340,7 +337,7 @@
                         </div>
                         <div class="form-group">
                             <select class="form-control-select" id="lselect" required>
-                                <option class="select-option" value="" disabled selected>@item.ServiceID</option>
+                                <option class="select-option" value="" disabled selected>@item.ServiceCategory</option>
                                @*  <option class="select-option" value="Off The Ground">Off The Ground</option>
                                 <option class="select-option" value="Accelerated Growth">Accelerated Growth</option>
                                 <option class="select-option" value="Market Domination">Market Domination</option> *@
@@ -393,11 +390,11 @@
                 <div class="button-group filters-button-group">
                     @foreach (var item in Model.PhotoCategoryDtos)
                     {
-                        <a class="button is-checked" data-filter="*"><span>@item.CategoryName</span></a>
-                        <a class="button" data-filter=".design"><span>@item.CategoryName</span></a>
-                        <a class="button" data-filter=".development"><span>@item.CategoryName</span></a>
-                        <a class="button" data-filter=".marketing"><span>@item.CategoryName</span></a>
+                    
                         <a class="button" data-filter=".seo"><span>@item.CategoryName</span></a>
+                      
+
+
                     }
                 </div>
 
@@ -412,9 +409,7 @@
                         <div class="element-item design development marketing">
                             <a class="popup-with-move-anim" href="#project-3"><div class="element-item-overlay"><span>BoomBap Audio</span></div><img src="@item.Name" alt="alternative"></a>
                         </div>
-                        @*   <div class="element-item design development marketing seo">
-                    <a class="popup-with-move-anim" href="#project-5"><div class="element-item-overlay"><span>Joy Moments</span></div><img src="@item.Name" alt="alternative"></a>
-                    </div> *@
+   
                         <div class="element-item design marketing seo">
                             <a class="popup-with-move-anim" href="#project-6"><div class="element-item-overlay"><span>Spark Events</span></div><img src="@item.Name" alt="alternative"></a>
                         </div>

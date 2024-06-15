@@ -30,10 +30,10 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["Services"] = _servicePackage.GetAll().Data;
+            ViewData["Service"] = _servicePackage.GetAll().Data;
             return View();
         }
-        // bir dk goz;e oz kodumda bax;m
+        
 
         [HttpPost]
         public IActionResult Create(CallMeCreateDto dto)
@@ -51,6 +51,8 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewData["Service"] = _servicePackage.GetAll().Data;
+
             var data = _callMeService.GetById(id).Data;
 
             return View(data);

@@ -15,7 +15,7 @@ namespace Business.Concrete
 {
     public class BusinessCatManager : IBusinessCatService
     {
-      
+
         private readonly IBusinessCatDal _businessCatDal;
         private readonly IValidator<BusinessCat> _validator;
 
@@ -63,18 +63,18 @@ namespace Business.Concrete
 
         public IDataResult<List<BusinessCat>> GetAll()
         {
-            
-                var result = _businessCatDal.GetAll(x => x.Deleted == 0);
-                return new SuccessDataResult<List<BusinessCat>>(result);
-            
+
+            var result = _businessCatDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<BusinessCat>>(result);
+
         }
 
         public IDataResult<BusinessCat> GetById(int id)
         {
-            
-                var result = _businessCatDal.GetById(id);
-                return new SuccessDataResult<BusinessCat>(result);
-              
+
+            var result = _businessCatDal.GetById(id);
+            return new SuccessDataResult<BusinessCat>(result);
+
         }
 
         public IResult UpDate(BusinessCatUpdateDto dto)
@@ -95,6 +95,8 @@ namespace Business.Concrete
             _businessCatDal.Update(model);
             return new SuccessResult(UIMessages.UPDATE_MESSAGE);
         }
+
+
     }
 }
 

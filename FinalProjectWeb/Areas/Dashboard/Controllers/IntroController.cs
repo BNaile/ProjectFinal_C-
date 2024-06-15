@@ -42,7 +42,8 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
             }
             return RedirectToAction("Index");
 
-
+            //burdaa yazdıqın kimi yazacasqa şekil yüklmeyeyi eynisidi kopya edim deyirsən 
+           //sadece add olan yeri
         }
 
         [HttpGet]
