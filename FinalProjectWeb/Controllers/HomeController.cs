@@ -1,15 +1,6 @@
 using Business.Abstract;
-using Entities.Concrete.Dtos;
-using Entities.Concrete.TableModels;
 using FinalProjectWeb.ViewModels;
-using Humanizer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Runtime.ConstrainedExecution;
 
 namespace FinalProjectWeb.Controllers
 {

@@ -22,7 +22,7 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         public IActionResult Index()
         {
             var data = _businessService.GetAll().Data;
-            ViewBag.ShowButton = data.Count() == 0;
+      
             return View(data);
         }
 

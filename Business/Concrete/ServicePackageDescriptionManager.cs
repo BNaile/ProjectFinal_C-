@@ -19,6 +19,7 @@ namespace Business.Concrete
             _servicePackageDescriptionDal = servicePackageDescriptionDal;
             _validator = validator;
         }
+        //Bunlar sil
         //public IResult Add(ServicePackageDescription entity)
         //{
         //    _servicePackageDescriptionDal.Add(entity);

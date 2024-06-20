@@ -18,5 +18,6 @@ namespace Business.Abstract
         IResult UpDate(PhotoUpdateDto dto, IFormFile Name, string webRootpath);
         IDataResult<List<PhotoDto>> GetPhotMeWithCategory();
         IDataResult<Photo> GetById(int id);
+       
     }
 }

@@ -11,7 +11,7 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
     [Authorize]
     public class CallMeController : Controller
     {
-        //Bu Service yazmısane onun adı hansıdı?hans; ad; bax googldan gos
+        
         private readonly ICallMeService _callMeService;   
         private readonly IServicePackage _servicePackage;
         public CallMeController(ICallMeService callMeService, IServicePackage servicePackage)

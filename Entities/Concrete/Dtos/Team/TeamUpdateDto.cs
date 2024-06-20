@@ -27,7 +27,7 @@ namespace Entities.Concrete.Dtos
                 SurName = dto.SurName,
                 PhotoUrl=dto.PhotoUrl,
                 FacebookLink = dto.FacebookUrl,
-                TwitterLink= dto.TwitterUrl,
+                TwitterLink = dto.TwitterUrl,
                 PositionId = dto.PositionId,
             };
             return team;

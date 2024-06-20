@@ -8,7 +8,8 @@ namespace FinalProjectWeb.ViewModels
         public List<About> AboutsDtos{ set; get; }
         public List<AboutCount> AboutCountDtos { set; get; }
         public List<BusinessCat> BussinesCategoryDtos { set; get; }
-        public List<CallMe> CallMeDtos { set; get; }
+        //public List<CallMe> CallMeDtos { set; get; }
+        public List<CallMeDto> CallMeDtos { get; set; }
         public List<CallMeInterested> CallMeInterestedDtos { set; get; }
         public List<Contact> ContactDtos { set; get; }
         public List<Expertise> ExpertiseDtos { set; get; }

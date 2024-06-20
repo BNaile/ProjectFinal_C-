@@ -107,5 +107,7 @@ namespace Business.Concrete
             return new SuccessResult(UIMessages.UPDATE_MESSAGE);
 
         }
+
+       
     }
 }

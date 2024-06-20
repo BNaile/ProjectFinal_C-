@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,7 @@ namespace FinalProjectWebApi.Controllers
 
             return BadRequest();
         }
-        [HttpPost]
+        [HttpPost("PostIntro")]
         public IActionResult Create(IntroCreateDto dto, IFormFile photoUrl)
         {
             var result = _introService.Add(dto, photoUrl, _webHostEnvironment.WebRootPath);
@@ -40,6 +41,26 @@ namespace FinalProjectWebApi.Controllers
             }
             return BadRequest();
 
+        }
+        [HttpPut("PutIntro")]
+        public IActionResult PutIntro(IntroUpdateDto dto, IFormFile photoUrl)
+        {
+            var result = _introService.UpDate(dto, photoUrl, _webHostEnvironment.WebRootPath);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpDelete("DeleteIntro")]
+        public IActionResult DeleteIntro(IntroDto dto)
+        {
+            var result = _introService.Delete(dto.Id);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

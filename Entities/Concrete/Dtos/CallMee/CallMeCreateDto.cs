@@ -10,7 +10,7 @@ namespace Entities.Concrete.Dtos
         public string Name { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
-        public string ServiceCategoryName { get; set; }
+        public string ServiceCategory { get; set; }
         public int ServiceId { get; set; }
 
         public static CallMe ToCallMe(CallMeCreateDto dto)

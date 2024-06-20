@@ -56,12 +56,13 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
             var data = _teamService.GetById(id).Data;
 
             return View(data);
-        }
+        }   
 
         [HttpPost]
         public IActionResult Edit(TeamUpdateDto dto, IFormFile PhotoUrl)
         {
             ViewData["TeamCategorie"] = _positionService.GetAll().Data;
+
             var result = _teamService.UpDate(dto, PhotoUrl, _webHostEnvironment.WebRootPath);
 
             if (!result.IsSuccess)

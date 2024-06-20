@@ -40,9 +40,21 @@ namespace Business.Concrete
         public IResult Delete(int id)
         {
 
-            var entity = GetById(id).Data;
-            entity.Deleted = id;
-            _expertiseDal.Delete(entity);
+            //var entity = GetById(id).Data;
+            //entity.Deleted = id;
+            //_expertiseDal.Delete(entity);
+            //return new SuccessResult(UIMessages.Deleted_MESSAGE);
+            
+            var dataResult = GetById(id);
+            if (dataResult.Data == null)
+            {
+                return new ErrorResult("Expertise entry not found.");
+            }
+
+            var data = dataResult.Data;
+            data.Deleted = id;
+
+            _expertiseDal.Update(data);
             return new SuccessResult(UIMessages.Deleted_MESSAGE);
         }
 
