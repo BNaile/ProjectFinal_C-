@@ -12,6 +12,7 @@ namespace Entities.Concrete.Dtos
         {
             BusinessCat businessCat = new()
             {
+                Id = dto.Id,
                 Title = dto.Title,
                 Description = dto.Description,
                 Points = dto.Points,

@@ -18,7 +18,7 @@ namespace FinalProjectWebApi.Controllers
         [HttpGet("GetBusiness")]
         public IActionResult GetBusiness()
         {
-            var result = _businessService.GetAll();
+            var result = _businessService.GetAll();  
             if (result.IsSuccess)
             {
                 return Ok(result);

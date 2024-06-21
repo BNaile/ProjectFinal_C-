@@ -68,7 +68,7 @@ namespace Business.Concrete
         public IResult UpDate(FeedbackUpdateDto dto)
         {
             var model = FeedbackUpdateDto.ToFeedback(dto);
-          var value =GetById(dto.Id).Data;
+          //var value =GetById(dto.Id).Data; 
            
             var validator = _validator.Validate(model);
             string errorMessage = " ";

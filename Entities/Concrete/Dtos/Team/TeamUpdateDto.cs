@@ -13,9 +13,9 @@ namespace Entities.Concrete.Dtos
         public string Name { get; set; }
         public string SurName { get; set; }
         public string  PhotoUrl { get; set; }
-        public string FacebookUrl { get; set; }
+        public string FacebookLink { get; set; }
 
-        public string TwitterUrl { get; set; }
+        public string TwitterLink { get; set; }
 
         public int PositionId { get; set; }
         public static Team ToTeam(TeamUpdateDto dto)
@@ -26,8 +26,8 @@ namespace Entities.Concrete.Dtos
                 Name = dto.Name,
                 SurName = dto.SurName,
                 PhotoUrl=dto.PhotoUrl,
-                FacebookLink = dto.FacebookUrl,
-                TwitterLink = dto.TwitterUrl,
+                FacebookLink = dto.FacebookLink,
+                TwitterLink = dto.TwitterLink,
                 PositionId = dto.PositionId,
             };
             return team;

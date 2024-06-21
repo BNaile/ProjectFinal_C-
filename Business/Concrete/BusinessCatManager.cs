@@ -94,6 +94,7 @@ namespace Business.Concrete
             model.LastUpdateDate = DateTime.Now;
             _businessCatDal.Update(model);
             return new SuccessResult(UIMessages.UPDATE_MESSAGE);
+            
         }
 
 

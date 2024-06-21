@@ -11,17 +11,20 @@ namespace Entities.Concrete.Dtos
         public string Email { get; set; }
         public int Phone { get; set; }
         public int ServiceId { get; set; }
-        public string ServiceCategory { get; set; }
+        public string CategoryName { get; set; }
         public static CallMe ToCallMe(CallMeUpdateDto dto)
         {
             CallMe callMeUpdate = new()
             {
+                Id=dto.Id,
                 Title = dto.Title,
                 Description = dto.Description,
                 Name = dto.Name,
                 Email = dto.Email,
                 Phone = dto.Phone,
-               
+               ServiceID = dto.ServiceId,
+              
+             
             };
             return callMeUpdate;
         }

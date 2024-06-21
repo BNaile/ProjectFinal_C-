@@ -9,6 +9,6 @@
         public string Email { get; set; }
         public int Phone { get; set; }
         public int ServiceID {  get; set; }
-        public string ServiceCategoryName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

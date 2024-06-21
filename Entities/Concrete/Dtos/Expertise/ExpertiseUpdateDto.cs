@@ -15,6 +15,7 @@ namespace Entities.Concrete.Dtos
         {
             Expertise expertise = new()
             {
+                Id = dto.Id,
                 Description = dto.Description,
                 
             };

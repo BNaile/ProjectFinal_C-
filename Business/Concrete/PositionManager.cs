@@ -47,7 +47,7 @@ namespace Business.Concrete
             var dataResult = GetById(id);
             if (dataResult.Data == null)
             {
-                return new ErrorResult("CallMe entry not found.");
+                return new ErrorResult("Position entry not found.");
             }
 
             var data = dataResult.Data;

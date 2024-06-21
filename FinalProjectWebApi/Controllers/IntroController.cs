@@ -32,7 +32,7 @@ namespace FinalProjectWebApi.Controllers
             return BadRequest();
         }
         [HttpPost("PostIntro")]
-        public IActionResult Create(IntroCreateDto dto, IFormFile photoUrl)
+        public IActionResult Create([FromForm] IntroCreateDto dto, IFormFile photoUrl)
         {
             var result = _introService.Add(dto, photoUrl, _webHostEnvironment.WebRootPath);
             if(result.IsSuccess)
@@ -43,7 +43,7 @@ namespace FinalProjectWebApi.Controllers
 
         }
         [HttpPut("PutIntro")]
-        public IActionResult PutIntro(IntroUpdateDto dto, IFormFile photoUrl)
+        public IActionResult PutIntro([FromForm] IntroUpdateDto dto, IFormFile photoUrl)
         {
             var result = _introService.UpDate(dto, photoUrl, _webHostEnvironment.WebRootPath);
             if (result.IsSuccess)

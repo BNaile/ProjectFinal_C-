@@ -61,8 +61,8 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Edit(CallMeUpdateDto dto)
         {
+            ViewData["Service"] = _servicePackage.GetAll().Data;
             var result = _callMeService.UpDate(dto);
-
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("", result.Message);

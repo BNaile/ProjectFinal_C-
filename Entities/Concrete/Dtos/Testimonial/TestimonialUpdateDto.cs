@@ -18,6 +18,7 @@ namespace Entities.Concrete.Dtos
         {
             Testimonial testimonal = new()
             {
+                Id=dto.Id,
                 UrlPhoto = dto.UrlPhoto,
                 Name = dto.Name,
                 Surname = dto.Surname,

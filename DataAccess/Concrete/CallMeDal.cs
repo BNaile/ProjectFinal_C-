@@ -30,7 +30,7 @@ namespace DataAccess.Concrete
                             Phone = callMe.Phone,
                             Email= callMe.Email,
                             Name = callMe.Name,
-                            ServiceCategoryName= service.Title
+                            CategoryName = callMe.ServiceCategory.Title
                          };
 
             return result.ToList();

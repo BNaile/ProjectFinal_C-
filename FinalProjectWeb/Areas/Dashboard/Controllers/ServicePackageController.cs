@@ -42,7 +42,7 @@ namespace FinalProjectWeb.Areas.Dashboard.Controllers
                 return View(dto);
                
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); //basqa elaqeli controolerin var?
 
 
         }
