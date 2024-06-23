@@ -7,7 +7,10 @@ using DataAccess.Concrete;
 using DataAccess.Context;
 using Entities.Concrete.TableModels;
 using Entities.Concrete.TableModels.Membership;
+using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 
 namespace FinalProjectWebApi
 {
@@ -16,6 +19,7 @@ namespace FinalProjectWebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var Configuration = builder.Configuration;
 
             // Add services to the container.
 
@@ -24,7 +28,28 @@ namespace FinalProjectWebApi
             builder.Services.AddDbContext<ApplicationDbContext>()
                 .AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
 
+            //ad;n düzeldersen
+            #region Mid
+
+          
             builder.Services.AddScoped<IAboutService, AboutManager>();
             builder.Services.AddScoped<IAboutDal, AboutDal>();
             builder.Services.AddScoped<IValidator<About>, AboutValidation>();
@@ -97,6 +122,8 @@ namespace FinalProjectWebApi
             builder.Services.AddScoped<ITestimonialDal, TestimonialDal>();
             builder.Services.AddScoped<IValidator<Testimonial>, TestimonialValidation>();
 
+            #endregion
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -112,6 +139,7 @@ namespace FinalProjectWebApi
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
