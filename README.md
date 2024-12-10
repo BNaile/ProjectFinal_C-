@@ -1,21 +1,21 @@
 # Travel Management System
 
-**Travel Management System** turizm şirkətləri üçün nəzərdə tutulmuş bir masaüstü tətbiqdir. Bu sistem müştərilərin rezervasiyalarını, tur paketlərini və ödəniş məlumatlarını idarə etmək üçün istifadə olunur. Layihə, turizm şirkətlərinin əməliyyatlarını avtomatlaşdıraraq daha sürətli və səmərəli xidmət göstərmələrinə kömək edir.
+**Travel Management System** is a desktop application designed for travel companies. This system is used to manage customer reservations, tour packages and payment information. The project helps tourism companies provide faster and more efficient services by automating their operations.
 
 ---
 
-## Xüsusiyyətlər
+## Features
 
-- **Müştəri Qeydiyyatı**: Müştəri məlumatlarının əlavə olunması və idarə edilməsi.
-- **Tur Paketlərinin İdarə Edilməsi**: Fərqli tur paketləri haqqında məlumatların əlavə olunması və redaktə edilməsi.
-- **Rezervasiyalar**: Müştərilər üçün rezervasiya yaratmaq və izləmək.
-- **Ödəniş Sistemi**: Ödənişlərin qeydiyyatı və hesabatların yaradılması.
-- **İstifadəçi Dostu İnterfeys**: Sadə və funksional dizaynla istifadənin asanlaşdırılması.
+- **Customer Registration**: Adding and managing customer information.
+- **Manage Tour Packages**: Add and edit information about different tour packages.
+- **Reservations**: Create and track reservations for customers.
+- **Payment System**: Registration of payments and creation of reports.
+- **User Friendly Interface**: Ease of use with a simple and functional design.
 
 ---
-### Texnologiyalar
-Layihədə istifadə olunan texnologiyalar:
+### Technologies
+Technologies used in the project:
 
-C# .NET Framework: Əsas proqramlaşdırma dili və platforması.
-Entity Framework: Verilənlər bazası əməliyyatları üçün ORM.
-Microsoft SQL Server: Verilənlər bazası idarəetmə sistemi.
+C# .NET Framework: The core programming language and platform.
+Entity Framework: An ORM for database operations.
+Microsoft SQL Server: Database management system.
